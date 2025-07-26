@@ -9,8 +9,8 @@ st.title("Car Resale Price Predictor")
 # --- Load the model only once ---
 @st.cache_resource
 def load_model():
-    file_id = "1a2B3C4dEfGhIJklmnOPqrStUv"  # Replace with your actual file ID
-    url = f"https://drive.google.com/uc?id={file_id}"
+    url = "https://drive.google.com/file/d/17nOabOcxGztDR7VuXai7EsN08xkU1pDk/view?usp=drive_link"  # Replace with your actual file ID
+    
 
     output = "car_price_model.pkl"
     if not os.path.exists(output):
