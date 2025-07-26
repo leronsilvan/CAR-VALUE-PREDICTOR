@@ -1,22 +1,19 @@
 import streamlit as st
 import joblib
 import pandas as pd
-import gdown
+from huggingface_hub import hf_hub_download
 import os
 
 st.title("Car Resale Price Predictor")
 
-# --- Load the model only once ---
+# --- Load model from Hugging Face ---
 @st.cache_resource
 def load_model():
-    url = "https://drive.google.com/file/d/17nOabOcxGztDR7VuXai7EsN08xkU1pDk/view?usp=drive_link"  # Replace with your actual file ID
-    
-
-    output = "car_price_model.pkl"
-    if not os.path.exists(output):
-        gdown.download(url, output, quiet=False)
-    
-    return joblib.load(output)
+    model_path = hf_hub_download(
+        repo_id="Leron7/car-model-pkl",  # replace with your repo
+        filename="car_price_model.pkl"                # replace with your file name
+    )
+    return joblib.load(model_path)
 
 model = load_model()
 
