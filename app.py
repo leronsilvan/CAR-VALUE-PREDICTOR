@@ -10,7 +10,7 @@ st.title("Car Resale Price Predictor")
 @st.cache_resource
 def load_model():
     model_path = hf_hub_download(
-        repo_id="Leron7/car-model-pkl",  # replace with your repo
+        repo_id="Leron7/car-price-model",  # replace with your repo
         filename="car_price_model.pkl"                # replace with your file name
     )
     return joblib.load(model_path)
