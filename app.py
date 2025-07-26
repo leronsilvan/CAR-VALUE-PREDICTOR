@@ -1,9 +1,17 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import requests
+import tempfile
 
 # Load the model
-model = joblib.load('car_price_model.pkl')
+file_id = "1a2B3C4dEfGhIJklmnOPqrStUv"  # <-- your actual file ID
+url = f"https://drive.google.com/uc?id={file_id}"
+
+response = requests.get(url)
+with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+    tmp_file.write(response.content)
+    model = joblib.load(tmp_file.name)
 
 st.title("Car Resale Price Predictor")
 
